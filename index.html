@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 50 Questions Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question-container {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .question-container.active {
+            display: block;
+        }
+        .wrong {
+            color: red;
+        }
+        .correct-answer {
+            color: green;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Top 50 Questions Quiz</h1>
+
+    <div id="quiz">
+        <!-- Question 1 -->
+        <div class="question-container active" id="question-1">
+            <p>1. What is flexible packaging?</p>
+            <input type="radio" name="q1" value="A"> A type of packaging made from hard materials.<br>
+            <input type="radio" name="q1" value="B"> Flexible packaging is made from pliable materials that can easily change shape.<br>
+            <input type="radio" name="q1" value="C"> A packaging that cannot be recycled.<br>
+            <input type="radio" name="q1" value="D"> Packaging made only from paper.<br>
+            <button onclick="submitAnswer(1, 'B')">Submit Answer</button>
+        </div>
+
+        <!-- (Repeat for other questions as per your original setup) -->
+
+        <!-- Final Message -->
+        <div class="question-container" id="finish">
+            <h2>Congratulations, you have completed the quiz!</h2>
+            <p>Your Score: <span id="score"></span> out of 15</p>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let totalQuestions = 15; // Only 15 questions are presented
+        let currentQuestion = 1;
+        let displayedQuestions = 15; // Change total displayable questions to 15
+
+        // Store user answers
+        let userAnswers = {};
+
+        function submitAnswer(questionNumber, correctAnswer) {
+            const selected = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+            if (!selected) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            const userAnswer = selected.value;
+            userAnswers[questionNumber] = userAnswer;
+
+            if (userAnswer === correctAnswer) {
+                score++;
+            }
+
+            document.getElementById("question-" + questionNumber).classList.remove("active");
+
+            currentQuestion++;
+            if (currentQuestion <= displayedQuestions) {
+                document.getElementById("question-" + currentQuestion).classList.add("active");
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById("finish").classList.add("active");
+            document.getElementById("score").innerText = score;
+
+            let resultsHTML = "<h3>Review Your Answers:</h3>";
+
+            for (let i = 1; i <= displayedQuestions; i++) {
+                const correctAnswer = getCorrectAnswer(i);
+                const userAnswer = userAnswers[i];
+                if (userAnswer !== correctAnswer) {
+                    resultsHTML += `<p class="wrong">Question ${i}: You answered "${userAnswer}", the correct answer was "${correctAnswer}".</p>`;
+                } else {
+                    resultsHTML += `<p>Question ${i}: Correct!</p>`;
+                }
+            }
+
+            document.getElementById("results").innerHTML = resultsHTML;
+        }
+
+        function getCorrectAnswer(questionNumber) {
+            const correctAnswers = {
+                1: 'B',
+                2: 'A',
+                3: 'B',
+                4: 'A',
+                5: 'B',
+                6: 'C',
+                7: 'D',
+                8: 'A',
+                9: 'B',
+                10: 'C',
+                11: 'A',
+                12: 'A',
+                13: 'B',
+                14: 'C',
+                15: 'C',
+            };
+            return correctAnswers[questionNumber];
+        }
+    </script>
+</body>
+</html>
