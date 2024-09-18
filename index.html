@@ -50,35 +50,35 @@
         let randomQuestions = [];
         let userAnswers = {};
 
-        // A pool of more varied wrong answers (longer and sometimes more complex)
+        // All 50 questions and answers (wrong answers creatively improved)
         const allQuestions = [
             { 
                 question: "What is flexible packaging?", 
                 answers: { 
                     A: "A type of packaging made from hard materials.", 
                     B: "Flexible packaging is made from pliable materials that can easily change shape.", 
-                    C: "A packaging that cannot be recycled.", 
-                    D: "Packaging made from materials that can shrink, expand, and change shape with exposure to different elements like temperature or pressure." 
+                    C: "A packaging used mostly in the automotive industry for sensitive parts.", 
+                    D: "Packaging made from multiple layers of materials, ensuring both flexibility and durability for all environments." 
                 }, 
                 correctAnswer: 'B' 
             },
             { 
                 question: "What is the difference between flexible and rigid packaging?", 
                 answers: { 
-                    A: "Flexible packaging is made from pliable materials, rigid packaging retains its shape.", 
-                    B: "Both are made from plastic materials, but flexible ones can also be made from metals or combinations of synthetic and organic materials.", 
-                    C: "Flexible packaging is only used for liquids, and rigid packaging for solids.", 
-                    D: "There is no significant difference, both perform the same function."
+                    A: "Flexible packaging is made from pliable materials, while rigid packaging retains its shape.", 
+                    B: "Both are made from plastic materials, but flexible ones allow for more storage space savings.", 
+                    C: "Flexible packaging is often made from materials like paper or fabric, while rigid packaging is always made of hard plastics or metals.", 
+                    D: "There is no difference; both types serve the same function." 
                 }, 
                 correctAnswer: 'A' 
             },
             { 
                 question: "Why is flexible packaging used in the food industry?", 
                 answers: { 
-                    A: "It’s expensive but lightweight, which offsets the cost of shipping.", 
-                    B: "It extends shelf life by providing a barrier against moisture, light, and oxygen, and is widely adaptable for different food categories.", 
-                    C: "It’s only used for frozen foods because it doesn't interact with other types of food.", 
-                    D: "It's used mainly for advertising, as it provides extra space for colorful logos and text."
+                    A: "It’s expensive but lightweight, reducing overall transportation costs.", 
+                    B: "It extends shelf life by providing a barrier against moisture, light, and oxygen, helping preserve food longer.", 
+                    C: "It's mostly used for display purposes because it's see-through and shiny.", 
+                    D: "It offers a great canvas for marketing, allowing brands to showcase vibrant designs, enhancing customer appeal."
                 }, 
                 correctAnswer: 'B' 
             },
@@ -86,33 +86,351 @@
                 question: "What materials are commonly used in flexible food packaging?", 
                 answers: { 
                     A: "Polyethylene (PE), polypropylene (PP), polyester (PET), nylon, and foil.", 
-                    B: "Only paper and plastic, typically in single-layer configurations.", 
-                    C: "Glass and metal, because they create stronger barriers.", 
-                    D: "All materials that can withstand high pressure, including fabrics and organic materials like cotton."
+                    B: "Only paper and plastic in their simplest forms.", 
+                    C: "Glass and metal, which are sometimes layered with additional insulation.", 
+                    D: "PE, PP, PET, and other recyclable materials that ensure sustainability and flexibility."
                 }, 
                 correctAnswer: 'A' 
             },
             { 
                 question: "How does flexible packaging improve food shelf life?", 
                 answers: { 
-                    A: "By changing the product composition during processing.", 
-                    B: "By including barrier layers that protect food from oxygen, moisture, and contaminants, without impacting the taste or nutritional value.", 
-                    C: "By adding preservatives into the packaging that are released over time.", 
-                    D: "By using vacuum seals that slow the movement of molecules inside the packaging."
+                    A: "By changing the food's chemical composition inside the packaging.", 
+                    B: "By including multiple barrier layers that protect food from oxygen, moisture, and contaminants.", 
+                    C: "It uses preservatives within the packaging itself to prolong shelf life.", 
+                    D: "Vacuum sealing methods that minimize exposure to any contaminants or oxygen." 
                 }, 
                 correctAnswer: 'B' 
             },
-            // More questions with varied wrong answers...
-            // Add the remaining 45 questions with wrong answers creatively improved in a similar way
+            { 
+                question: "What types of products are best suited for flexible packaging?", 
+                answers: { 
+                    A: "Only liquids.", 
+                    B: "Electronics.", 
+                    C: "Snacks, frozen foods, ready-to-eat meals, dry goods, and seeds.", 
+                    D: "Heavy machinery." 
+                }, 
+                correctAnswer: 'C' 
+            },
+            { 
+                question: "Is flexible packaging recyclable?", 
+                answers: { 
+                    A: "No, it is not recyclable.", 
+                    B: "Only if it is made of paper.", 
+                    C: "Only in certain locations with advanced recycling programs.", 
+                    D: "Some flexible packaging is recyclable depending on the material composition." 
+                }, 
+                correctAnswer: 'D' 
+            },
+            { 
+                question: "What is the difference between monolayer and multilayer flexible packaging?", 
+                answers: { 
+                    A: "Monolayer packaging consists of a single layer of material, while multilayer packaging combines different materials.", 
+                    B: "Monolayer is used for liquids.", 
+                    C: "There is no difference, both are used interchangeably.", 
+                    D: "Multilayer is only for non-food items due to the complexity of the structure." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is the role of lamination in flexible packaging?", 
+                answers: { 
+                    A: "To make the packaging waterproof.", 
+                    B: "To bond multiple layers of materials together to enhance the strength, durability, or barrier properties.", 
+                    C: "It is mainly used for decorative purposes, such as adding gloss.", 
+                    D: "It makes the packaging more rigid by adding layers of plastic."
+                }, 
+                correctAnswer: 'B' 
+            },
+            { 
+                question: "How is flexible packaging printed?", 
+                answers: { 
+                    A: "Using lasers.", 
+                    B: "By hand.", 
+                    C: "Using methods like flexography, rotogravure, and digital printing.", 
+                    D: "It cannot be printed on, only labeled." 
+                }, 
+                correctAnswer: 'C' 
+            },
+            { 
+                question: "Can flexible packaging be used for frozen foods?", 
+                answers: { 
+                    A: "No, it becomes brittle in low temperatures.", 
+                    B: "Yes, flexible packaging materials are designed to withstand low temperatures without compromising product protection.", 
+                    C: "Only in certain climates where temperatures do not drop below zero.", 
+                    D: "Yes, but only when combined with rigid packaging for outer protection." 
+                }, 
+                correctAnswer: 'B' 
+            },
+            { 
+                question: "What are common materials used in stand-up pouches?", 
+                answers: { 
+                    A: "Only paper and foil.", 
+                    B: "Polyethylene, polypropylene, and nylon.", 
+                    C: "Cardboard and plastics.", 
+                    D: "Wood pulp and recycled glass." 
+                }, 
+                correctAnswer: 'B' 
+            },
+            { 
+                question: "What is barrier protection in flexible packaging?", 
+                answers: { 
+                    A: "A protective film layer that prevents outside moisture, air, and contaminants from reaching the product.", 
+                    B: "An added plastic film layer that prevents mechanical damage.", 
+                    C: "The seal at the top of the packaging to prevent leakage.", 
+                    D: "A layer used for decorative purposes." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is retort packaging?", 
+                answers: { 
+                    A: "A type of packaging that allows food to be sterilized after packaging for extended shelf life.", 
+                    B: "A biodegradable packaging option used for fresh produce.", 
+                    C: "Packaging made from paper that is used to preserve dry goods.", 
+                    D: "A type of decorative packaging used only for luxury items." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "Can flexible packaging be tamper-evident?", 
+                answers: { 
+                    A: "No, only rigid packaging can be tamper-evident.", 
+                    B: "Yes, flexible packaging can include tamper-evident seals, shrink bands, or tear strips.", 
+                    C: "It is never tamper-evident due to its flexibility.", 
+                    D: "It depends on the material used for packaging." 
+                }, 
+                correctAnswer: 'B' 
+            },
+            { 
+                question: "How does flexible packaging help reduce food waste?", 
+                answers: { 
+                    A: "By making food more appealing visually.", 
+                    B: "By extending shelf life and protecting food from environmental factors.", 
+                    C: "It prevents food from spoiling by adding preservatives.", 
+                    D: "It reduces waste through portion control." 
+                }, 
+                correctAnswer: 'B' 
+            },
+            { 
+                question: "What are resealable features in flexible packaging?", 
+                answers: { 
+                    A: "Zippers or press-to-close features that allow the packaging to be resealed after opening.", 
+                    B: "Tear-off lids that can be resealed using adhesives.", 
+                    C: "Screws or clips that seal the packaging again.", 
+                    D: "Glue-based seals that allow temporary closure after opening." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is Modified Atmosphere Packaging (MAP)?", 
+                answers: { 
+                    A: "It alters the atmosphere inside the packaging to prolong the shelf life of food.", 
+                    B: "It adds preservatives to the food inside the packaging.", 
+                    C: "It uses a vacuum to remove all oxygen from the packaging.", 
+                    D: "It replaces flexible packaging with rigid packaging for additional protection." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "Can flexible packaging be used for high-pressure processing (HPP)?", 
+                answers: { 
+                    A: "Yes, flexible packaging can withstand high pressures without bursting.", 
+                    B: "No, it will burst under high pressure.", 
+                    C: "Only when combined with rigid packaging for reinforcement.", 
+                    D: "It depends on the thickness of the plastic used in the flexible packaging." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What are gussets in flexible packaging?", 
+                answers: { 
+                    A: "Gussets are folds added to flexible packaging to increase volume capacity and allow for expansion.", 
+                    B: "They are adhesives used to seal the packaging after filling.", 
+                    C: "Handles attached to the packaging to make it easier to carry.", 
+                    D: "Labels added to indicate the freshness of the product." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "Why is recyclable flexible packaging important?", 
+                answers: { 
+                    A: "It reduces the overall environmental impact and helps companies meet sustainability goals.", 
+                    B: "It costs less to manufacture.", 
+                    C: "It is easier to dispose of than rigid packaging.", 
+                    D: "It makes the packaging lighter and reduces transportation costs." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "How does cold-sealing work in flexible packaging?", 
+                answers: { 
+                    A: "Cold-sealing uses a pressure-sensitive adhesive that bonds at room temperature without heat.", 
+                    B: "It requires freezing the product before sealing.", 
+                    C: "It is used to seal the packaging during cold weather conditions.", 
+                    D: "It is a decorative sealing method used in high-end packaging." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is the role of foil in flexible packaging?", 
+                answers: { 
+                    A: "Foil is used as a barrier against light, moisture, and oxygen, extending shelf life.", 
+                    B: "Foil is only used to give the packaging a metallic look.", 
+                    C: "Foil weakens the structural integrity of the packaging.", 
+                    D: "Foil is used for decorative purposes only." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What are the environmental impacts of flexible packaging?", 
+                answers: { 
+                    A: "Flexible packaging uses fewer materials, which reduces waste and energy consumption during manufacturing.", 
+                    B: "It requires more resources to manufacture and is harmful to the environment.", 
+                    C: "It has no environmental impact.", 
+                    D: "It cannot be recycled, so it contributes to landfills." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "Can flexible packaging be used for liquids?", 
+                answers: { 
+                    A: "Yes, flexible packaging can be designed to hold liquids securely.", 
+                    B: "No, it is only for dry goods.", 
+                    C: "Only for certain types of liquids, such as oils.", 
+                    D: "It depends on the thickness of the material used." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "How does flexible packaging reduce transportation costs?", 
+                answers: { 
+                    A: "Flexible packaging is lightweight and takes up less space, reducing shipping costs.", 
+                    B: "It increases transportation costs because it is more delicate.", 
+                    C: "It requires more protective layers, increasing the shipping volume.", 
+                    D: "It has no effect on transportation costs." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is the future of flexible packaging?", 
+                answers: { 
+                    A: "The future includes advancements in sustainable materials, smart packaging technologies, and increased recyclability.", 
+                    B: "Flexible packaging will no longer be used.", 
+                    C: "The future will focus on rigid packaging.", 
+                    D: "Flexible packaging will become obsolete." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is form-fill-seal (FFS) technology in flexible packaging?", 
+                answers: { 
+                    A: "It is a manufacturing process where packaging is formed, filled, and sealed in one continuous operation.", 
+                    B: "It is a process where packaging is formed and sealed separately from filling.", 
+                    C: "It is a technology used only for rigid packaging.", 
+                    D: "It is used to reseal packaging after it is opened." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is the significance of packaging thickness in flexible packaging?", 
+                answers: { 
+                    A: "Thickness affects durability, barrier properties, and cost.", 
+                    B: "Thickness makes the package harder to open.", 
+                    C: "Thickness reduces visibility.", 
+                    D: "Thickness makes the package reusable." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What are the benefits of shrink films in flexible packaging?", 
+                answers: { 
+                    A: "Shrink films provide a tight fit, protecting products from dust, moisture, and tampering.", 
+                    B: "They are decorative films that enhance product appeal.", 
+                    C: "They are used to seal liquids only.", 
+                    D: "They are used to increase the weight of the packaging." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is the role of coatings in flexible packaging?", 
+                answers: { 
+                    A: "Coatings enhance the barrier properties, protect against moisture, and improve printability.", 
+                    B: "They are used only for aesthetic purposes.", 
+                    C: "They weaken the packaging.", 
+                    D: "They increase the cost of manufacturing." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "Can flexible packaging be used for microwaveable products?", 
+                answers: { 
+                    A: "Yes, using materials like PET or PP, flexible packaging can withstand microwave conditions.", 
+                    B: "No, flexible packaging cannot be microwaved.", 
+                    C: "Only if combined with metal components.", 
+                    D: "It depends on the shape of the product inside." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is vacuum packaging?", 
+                answers: { 
+                    A: "A method of packaging that removes air from the package before sealing to extend shelf life.", 
+                    B: "A packaging technique used only for dry foods.", 
+                    C: "Packaging that is filled with air before sealing.", 
+                    D: "A process used for heavy machinery." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "How does flexible packaging support food safety?", 
+                answers: { 
+                    A: "By providing a barrier to contaminants and ensuring that the food remains fresh.", 
+                    B: "It doesn’t contribute to food safety.", 
+                    C: "It can sometimes contribute to food spoilage.", 
+                    D: "It is used mainly for advertising." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What are the advantages of stand-up pouches in flexible packaging?", 
+                answers: { 
+                    A: "They offer better shelf presence, are resealable, and provide good protection for the contents.", 
+                    B: "They are cheaper to manufacture but less durable.", 
+                    C: "They are difficult to use for packaging large quantities.", 
+                    D: "They are mostly decorative and provide little protection." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is an oxygen transmission rate (OTR)?", 
+                answers: { 
+                    A: "A measure of how much oxygen passes through the packaging material over time.", 
+                    B: "A measure of how much air the packaging can hold.", 
+                    C: "The speed at which oxygen is released from the packaging.", 
+                    D: "The amount of oxygen sealed inside the package." 
+                }, 
+                correctAnswer: 'A' 
+            },
+            { 
+                question: "What is a moisture vapor transmission rate (MVTR)?", 
+                answers: { 
+                    A: "A measure of how much moisture vapor passes through the packaging over time.", 
+                    B: "A measure of how much liquid the packaging can hold.", 
+                    C: "The rate at which moisture is released from the product.", 
+                    D: "The amount of moisture vapor sealed inside the package." 
+                }, 
+                correctAnswer: 'A' 
+            }
         ];
 
-        // Randomly select 15 questions
+        // Function to select random 15 questions
         function selectRandomQuestions() {
             let shuffledQuestions = [...allQuestions].sort(() => 0.5 - Math.random());
             return shuffledQuestions.slice(0, displayedQuestions);
         }
 
-        // Shuffle answer choices
+        // Function to shuffle answers
         function shuffleAnswers(answers) {
             const keys = Object.keys(answers);
             const shuffledKeys = keys.sort(() => 0.5 - Math.random());
@@ -146,6 +464,7 @@
             }
         }
 
+        // Submit answer and provide feedback
         function submitAnswer(questionNumber, correctAnswer) {
             const selected = document.querySelector(`input[name="q${questionNumber}"]:checked`);
             const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
@@ -169,16 +488,19 @@
             }
         }
 
+        // Continue to the next question
         function continueToNextQuestion(questionNumber) {
             document.getElementById(`continue-${questionNumber}`).style.display = "none"; // Hide the continue button
             nextQuestion();
         }
 
+        // Load next question
         function nextQuestion() {
             currentQuestionIndex++;
             displayQuestion();
         }
 
+        // Display the final score and review answers
         function showResults() {
             document.getElementById("quiz").style.display = "none";
             document.getElementById("finish").style.display = "block";
