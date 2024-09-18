@@ -72,9 +72,10 @@
 
         // Display the current question
         function displayQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = ''; // Clear previous question content
             if (currentQuestionIndex < randomQuestions.length) {
                 const questionObj = randomQuestions[currentQuestionIndex];
-                const quizDiv = document.getElementById("quiz");
                 quizDiv.innerHTML = `
                     <div class="question-container active" id="question-${currentQuestionIndex + 1}">
                         <p>${currentQuestionIndex + 1}. ${questionObj.question}</p>
