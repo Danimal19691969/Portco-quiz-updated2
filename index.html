@@ -70,17 +70,29 @@
             return shuffledQuestions.slice(0, displayedQuestions);
         }
 
+        // Shuffle answer choices
+        function shuffleAnswers(answers) {
+            const keys = Object.keys(answers);
+            const shuffledKeys = keys.sort(() => 0.5 - Math.random());
+            const shuffledAnswers = {};
+            shuffledKeys.forEach(key => {
+                shuffledAnswers[key] = answers[key];
+            });
+            return shuffledAnswers;
+        }
+
         // Display the current question
         function displayQuestion() {
             const quizDiv = document.getElementById("quiz");
             quizDiv.innerHTML = ''; // Clear previous question content
             if (currentQuestionIndex < randomQuestions.length) {
                 const questionObj = randomQuestions[currentQuestionIndex];
+                const shuffledAnswers = shuffleAnswers(questionObj.answers);
                 quizDiv.innerHTML = `
                     <div class="question-container active" id="question-${currentQuestionIndex + 1}">
                         <p>${currentQuestionIndex + 1}. ${questionObj.question}</p>
-                        ${Object.keys(questionObj.answers).map(letter => `
-                            <input type="radio" name="q${currentQuestionIndex + 1}" value="${letter}"> ${questionObj.answers[letter]}<br>
+                        ${Object.keys(shuffledAnswers).map(letter => `
+                            <input type="radio" name="q${currentQuestionIndex + 1}" value="${letter}"> ${shuffledAnswers[letter]}<br>
                         `).join('')}
                         <button onclick="submitAnswer(${currentQuestionIndex + 1}, '${questionObj.correctAnswer}')">Submit Answer</button>
                         <div id="feedback-${currentQuestionIndex + 1}" class="feedback"></div>
