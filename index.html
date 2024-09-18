@@ -33,37 +33,63 @@
 <body>
     <h1>Top 50 Questions Quiz</h1>
 
-    <div id="quiz">
-        <!-- Question 1 -->
-        <div class="question-container active" id="question-1">
-            <p>1. What is flexible packaging?</p>
-            <input type="radio" name="q1" value="A"> A type of packaging made from hard materials.<br>
-            <input type="radio" name="q1" value="B"> Flexible packaging is made from pliable materials that can easily change shape.<br>
-            <input type="radio" name="q1" value="C"> A packaging that cannot be recycled.<br>
-            <input type="radio" name="q1" value="D"> Packaging made only from paper.<br>
-            <button onclick="submitAnswer(1, 'B')">Submit Answer</button>
-            <div id="feedback-1" class="feedback"></div>
-            <button id="continue-1" style="display:none;" onclick="continueToNextQuestion(1)">Continue</button>
-        </div>
-
-        <!-- (Repeat for other questions as per your original setup) -->
-
-        <!-- Final Message -->
-        <div class="question-container" id="finish">
-            <h2>Congratulations, you have completed the quiz!</h2>
-            <p>Your Score: <span id="score"></span> out of 15</p>
-            <div id="results"></div>
-        </div>
+    <div id="quiz"></div>
+    
+    <!-- Final Message -->
+    <div class="question-container" id="finish" style="display: none;">
+        <h2>Congratulations, you have completed the quiz!</h2>
+        <p>Your Score: <span id="score"></span> out of 15</p>
+        <div id="results"></div>
     </div>
 
     <script>
+        const totalQuestions = 50; // 50 possible questions
+        const displayedQuestions = 15; // Select 15 questions
         let score = 0;
-        let totalQuestions = 15; // Only 15 questions are presented
-        let currentQuestion = 1;
-        let displayedQuestions = 15; // Change total displayable questions to 15
-
-        // Store user answers
+        let currentQuestionIndex = 0;
+        let randomQuestions = [];
         let userAnswers = {};
+
+        const allQuestions = [
+            { question: "What is flexible packaging?", answers: { A: "A type of packaging made from hard materials.", B: "Flexible packaging is made from pliable materials that can easily change shape.", C: "A packaging that cannot be recycled.", D: "Packaging made only from paper." }, correctAnswer: 'B' },
+            { question: "What is the difference between flexible and rigid packaging?", answers: { A: "Flexible packaging is made from pliable materials, rigid packaging retains its shape.", B: "Both are made from plastic materials.", C: "Flexible packaging is only used for liquids.", D: "There is no difference." }, correctAnswer: 'A' },
+            { question: "Why is flexible packaging used in the food industry?", answers: { A: "It’s expensive but lightweight.", B: "It extends shelf life by providing a barrier against moisture, light, and oxygen.", C: "It’s only used for frozen foods.", D: "It’s not commonly used in the food industry." }, correctAnswer: 'B' },
+            { question: "What materials are commonly used in flexible food packaging?", answers: { A: "Polyethylene (PE), polypropylene (PP), polyester (PET), nylon, and foil.", B: "Only paper and plastic.", C: "Glass and metal.", D: "All of the above." }, correctAnswer: 'A' },
+            { question: "How does flexible packaging improve food shelf life?", answers: { A: "By changing the product composition.", B: "By including barrier layers that protect food from oxygen, moisture, and contaminants.", C: "By adding preservatives.", D: "By freezing the food." }, correctAnswer: 'B' },
+            { question: "What types of products are best suited for flexible packaging?", answers: { A: "Only liquids.", B: "Electronics.", C: "Snacks, frozen foods, ready-to-eat meals, dry goods, and seeds.", D: "Heavy machinery." }, correctAnswer: 'C' },
+            { question: "Is flexible packaging recyclable?", answers: { A: "No, it is not recyclable.", B: "Only if it is made of paper.", C: "Only in certain locations.", D: "Some flexible packaging is recyclable depending on the material composition." }, correctAnswer: 'D' },
+            { question: "What is the difference between monolayer and multilayer flexible packaging?", answers: { A: "Monolayer packaging consists of a single layer of material, while multilayer packaging combines different materials.", B: "Monolayer is used for liquids.", C: "There is no difference.", D: "Multilayer is only for non-food items." }, correctAnswer: 'A' },
+            { question: "What is the role of lamination in flexible packaging?", answers: { A: "To make the packaging waterproof.", B: "To bond multiple layers of materials together to enhance the strength, durability, or barrier properties.", C: "To make the packaging non-recyclable.", D: "To make the packaging glossy." }, correctAnswer: 'B' },
+            { question: "How is flexible packaging printed?", answers: { A: "Using lasers.", B: "By hand.", C: "Using methods like flexography, rotogravure, and digital printing.", D: "It cannot be printed." }, correctAnswer: 'C' },
+            // Add the rest of your 50 questions here...
+        ];
+
+        // Randomly select 15 questions
+        function selectRandomQuestions() {
+            let shuffledQuestions = [...allQuestions].sort(() => 0.5 - Math.random());
+            return shuffledQuestions.slice(0, displayedQuestions);
+        }
+
+        // Display the current question
+        function displayQuestion() {
+            if (currentQuestionIndex < randomQuestions.length) {
+                const questionObj = randomQuestions[currentQuestionIndex];
+                const quizDiv = document.getElementById("quiz");
+                quizDiv.innerHTML = `
+                    <div class="question-container active" id="question-${currentQuestionIndex + 1}">
+                        <p>${currentQuestionIndex + 1}. ${questionObj.question}</p>
+                        ${Object.keys(questionObj.answers).map(letter => `
+                            <input type="radio" name="q${currentQuestionIndex + 1}" value="${letter}"> ${questionObj.answers[letter]}<br>
+                        `).join('')}
+                        <button onclick="submitAnswer(${currentQuestionIndex + 1}, '${questionObj.correctAnswer}')">Submit Answer</button>
+                        <div id="feedback-${currentQuestionIndex + 1}" class="feedback"></div>
+                        <button id="continue-${currentQuestionIndex + 1}" style="display:none;" onclick="continueToNextQuestion(${currentQuestionIndex + 1})">Continue</button>
+                    </div>
+                `;
+            } else {
+                showResults();
+            }
+        }
 
         function submitAnswer(questionNumber, correctAnswer) {
             const selected = document.querySelector(`input[name="q${questionNumber}"]:checked`);
@@ -94,54 +120,32 @@
         }
 
         function nextQuestion() {
-            document.getElementById("question-" + currentQuestion).classList.remove("active");
-            currentQuestion++;
-            if (currentQuestion <= displayedQuestions) {
-                document.getElementById("question-" + currentQuestion).classList.add("active");
-            } else {
-                showResults();
-            }
+            currentQuestionIndex++;
+            displayQuestion();
         }
 
         function showResults() {
-            document.getElementById("finish").classList.add("active");
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("finish").style.display = "block";
             document.getElementById("score").innerText = score;
 
             let resultsHTML = "<h3>Review Your Answers:</h3>";
-
-            for (let i = 1; i <= displayedQuestions; i++) {
-                const correctAnswer = getCorrectAnswer(i);
-                const userAnswer = userAnswers[i];
+            randomQuestions.forEach((questionObj, index) => {
+                const userAnswer = userAnswers[index + 1];
+                const correctAnswer = questionObj.correctAnswer;
                 if (userAnswer !== correctAnswer) {
-                    resultsHTML += `<p class="wrong">Question ${i}: You answered "${userAnswer}", the correct answer was "${correctAnswer}".</p>`;
+                    resultsHTML += `<p class="wrong">Question ${index + 1}: You answered "${userAnswer}", the correct answer was "${correctAnswer}".</p>`;
                 } else {
-                    resultsHTML += `<p>Question ${i}: Correct!</p>`;
+                    resultsHTML += `<p>Question ${index + 1}: Correct!</p>`;
                 }
-            }
+            });
 
             document.getElementById("results").innerHTML = resultsHTML;
         }
 
-        function getCorrectAnswer(questionNumber) {
-            const correctAnswers = {
-                1: 'B',
-                2: 'A',
-                3: 'B',
-                4: 'A',
-                5: 'B',
-                6: 'C',
-                7: 'D',
-                8: 'A',
-                9: 'B',
-                10: 'C',
-                11: 'A',
-                12: 'A',
-                13: 'B',
-                14: 'C',
-                15: 'C',
-            };
-            return correctAnswers[questionNumber];
-        }
+        // Initialize the quiz by selecting random questions and displaying the first one
+        randomQuestions = selectRandomQuestions();
+        displayQuestion();
     </script>
 </body>
 </html>
